@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/dog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/dog"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
+        />
+    <TextView
+        android:id="@+id/nombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rami"
+        app:layout_constraintTop_toBottomOf="@id/dog"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="20dp"
+        android:fontFamily="sans-serif-medium"
+        android:textColor="@color/black"
+         />
+
+    <TextView
+        android:id="@+id/descripcion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/nombre"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="20dp"
+        android:text="Un diamente sin pulir"
+        />
+    <TextView
+    android:id="@+id/sexo"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:layout_constraintTop_toBottomOf="@id/descripcion"
+    app:layout_constraintStart_toStartOf="parent"
+    android:layout_marginTop="15dp"
+    android:layout_marginStart="20dp"
+    android:text="Hembra"
+    />
+    <TextView
+        android:id="@+id/fecha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/descripcion"
+        app:layout_constraintStart_toEndOf="@id/sexo"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="20dp"
+        android:text="01-01-2021"
+        />
+    <TextView
+        android:id="@+id/like"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/descripcion"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="10dp"
+        android:text="Like"
+        />
+    <TextView
+        android:id="@+id/compartir"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/descripcion"
+        app:layout_constraintEnd_toStartOf="@id/like"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="10dp"
+        android:text="Compartir"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
