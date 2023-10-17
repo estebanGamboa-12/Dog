@@ -20,8 +20,8 @@ class MainModelView (
     private val  _uiState= MutableLiveData<UiState>()
     val uiState: LiveData<UiState> = _uiState
 
-    fun saveDog(name:String, minutes:String, porcentajeTop:String,porcentajeBottom:String ){
-        saveDogUseCase(name,minutes,porcentajeTop,porcentajeBottom).fold(
+    fun saveDog(name:String,description:String,sex:String,date:String ){
+        saveDogUseCase(name,description,sex,date).fold(
             { responseError(it) },
             { responseSuccess(it) }
         )
@@ -44,12 +44,12 @@ class MainModelView (
 
     }
 
-    private fun responseGetUserSuccess(burguer: Dog) {
-        _uiState.postValue(UiState(burguer = burguer))
+    private fun responseGetUserSuccess(dog: Dog) {
+        _uiState.postValue(UiState(dog = dog))
     }
     data class UiState(
         val errorApp: ErrorApp? = null,
         val isLoading: Boolean = false,
-        val burguer: Dog? = null
+        val dog: Dog? = null
     )
 }

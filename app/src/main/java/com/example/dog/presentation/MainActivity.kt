@@ -1,11 +1,14 @@
-package com.example.burguer.presentation
+package com.example.dog.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+
 
 import android.widget.TextView
 
 import androidx.lifecycle.Observer
+import com.example.burguer.presentation.MainModelView
 import com.example.dog.R
 
 import com.example.dog.data.DogDataRepository
@@ -28,15 +31,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //setupView()
+        setupView()
         setupObservers()
-        // recoverData()
+         recoverData()
         viewModel.loadDog()
     }
 
-    /* private  fun setupView(){
-        val actionButtonSave=findViewById<Button>(R.id.action_save)
-        actionButtonSave.setOnClickListener {
+     private  fun setupView(){
+
             viewModel.saveDog(
                 getBurguerInput(),
                 getMinutesInput(),
@@ -44,21 +46,20 @@ class MainActivity : AppCompatActivity() {
                 getPercentTopInput())
             Log.d("@dev", getMinutesInput()+ getBurguerInput() +getPercentBottomInput()+getPercentTopInput())
 
-        }
 
-    }*/
-    /*private fun recoverData(){
-
-        val actionButtonRecover=findViewById<Button>(R.id.action_recover)
-        actionButtonRecover.setOnClickListener {
-            viewModel.loadDog()
-        }
 
     }
-*/
+    private fun recoverData(){
+
+
+            viewModel.loadDog()
+
+
+    }
+
     private fun setupObservers() {
         val observer = Observer<MainModelView.UiState> {
-            it.burguer?.apply {
+            it.dog?.apply {
                 bindData(this)
             }
         }
@@ -90,18 +91,22 @@ class MainActivity : AppCompatActivity() {
     private fun setPercentBottomInput(fecha: String) {
         findViewById<TextView>(R.id.fecha).setText(fecha)
     }
+
+    //se recogen todos los inputs
+    private fun getBurguerInput():String=
+
+        findViewById<TextView>(R.id.nombre).text.toString()
+    private fun getMinutesInput():String=
+        findViewById<TextView>(R.id.descripcion).text.toString()
+    private fun getPercentBottomInput():String=
+        findViewById<TextView>(R.id.sexo).text.toString()
+    private fun getPercentTopInput():String=
+        findViewById<TextView>(R.id.nombre).text.toString()
+
 }
 
 
 
-/*
-    //se recogen todos los inputs
-    private fun getBurguerInput():String=
-        findViewById<EditText>(R.id.label_name_Burguer).text.toString()
-    private fun getMinutesInput():String=
-        findViewById<EditText>(R.id.label_minutes).text.toString()
-    private fun getPercentBottomInput():String=
-        findViewById<EditText>(R.id.label_porcentajeBottom).text.toString()
-    private fun getPercentTopInput():String=
-        findViewById<EditText>(R.id.label_porcentajeTop).text.toString()
-}*/
+
+
+
