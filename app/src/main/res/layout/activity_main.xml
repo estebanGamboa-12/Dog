@@ -7,7 +7,7 @@
     tools:context=".presentation.MainActivity">
 
     <ImageView
-        android:id="@+id/dog"
+        android:id="@+id/url_image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/dog"
@@ -16,11 +16,11 @@
 
         />
     <TextView
-        android:id="@+id/nombre"
+        android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Rami"
-        app:layout_constraintTop_toBottomOf="@id/dog"
+        app:layout_constraintTop_toBottomOf="@id/url_image"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="15dp"
         android:layout_marginStart="20dp"
@@ -29,40 +29,38 @@
          />
 
     <TextView
-        android:id="@+id/descripcion"
+        android:id="@+id/short_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/nombre"
+        app:layout_constraintTop_toBottomOf="@id/name"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="15dp"
         android:layout_marginStart="20dp"
-        android:text="Un diamente sin pulir"
         />
     <TextView
-    android:id="@+id/sexo"
+    android:id="@+id/sex"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    app:layout_constraintTop_toBottomOf="@id/descripcion"
+    app:layout_constraintTop_toBottomOf="@id/short_description"
     app:layout_constraintStart_toStartOf="parent"
     android:layout_marginTop="15dp"
     android:layout_marginStart="20dp"
     android:text="Hembra"
     />
     <TextView
-        android:id="@+id/fecha"
+        android:id="@+id/date_birth"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/descripcion"
-        app:layout_constraintStart_toEndOf="@id/sexo"
+        app:layout_constraintTop_toBottomOf="@id/short_description"
+        app:layout_constraintStart_toEndOf="@id/sex"
         android:layout_marginTop="15dp"
         android:layout_marginStart="20dp"
-        android:text="01-01-2021"
         />
     <TextView
         android:id="@+id/like"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/descripcion"
+        app:layout_constraintTop_toBottomOf="@id/short_description"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="10dp"
@@ -72,7 +70,7 @@
         android:id="@+id/compartir"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/descripcion"
+        app:layout_constraintTop_toBottomOf="@id/short_description"
         app:layout_constraintEnd_toStartOf="@id/like"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="10dp"

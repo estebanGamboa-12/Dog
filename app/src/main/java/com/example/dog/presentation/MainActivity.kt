@@ -2,60 +2,49 @@ package com.example.dog.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 
-
-import android.widget.TextView
 
 import androidx.lifecycle.Observer
 import com.example.burguer.presentation.MainModelView
-import com.example.dog.R
+import com.example.dog.app.extension.loadUrl
 
 import com.example.dog.data.DogDataRepository
 import com.example.dog.data.local.XmlLocalDataSource
 import com.example.dog.data.remote.ApiMockRemoteDataSource
+import com.example.dog.databinding.ActivityMainBinding
 import com.example.dog.domain.Dog
 import com.example.dog.domain.GetDogUseCase
-import com.example.dog.domain.SaveDogUseCase
+import com.iesam.androidviews.app.serialization.GsonSerialization
 
 
 class MainActivity : AppCompatActivity() {
 
     val viewModel: MainModelView by lazy {
         MainModelView(
-            SaveDogUseCase(DogDataRepository(XmlLocalDataSource(this), ApiMockRemoteDataSource())),
-            GetDogUseCase(DogDataRepository(XmlLocalDataSource(this), ApiMockRemoteDataSource()))
+            GetDogUseCase(
+                DogDataRepository(
+                    XmlLocalDataSource(
+                        this,
+                        GsonSerialization()
+                    ), ApiMockRemoteDataSource()))
         )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        setupView()
+       setupBinding()
         setupObservers()
-         recoverData()
         viewModel.loadDog()
     }
 
-     private  fun setupView(){
+    private lateinit var binding: ActivityMainBinding
 
-            viewModel.saveDog(
-                getBurguerInput(),
-                getMinutesInput(),
-                getPercentBottomInput(),
-                getPercentTopInput())
-            Log.d("@dev", getMinutesInput()+ getBurguerInput() +getPercentBottomInput()+getPercentTopInput())
-
-
-
+    private fun setupBinding(){
+        binding= ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
     }
-    private fun recoverData(){
 
 
-            viewModel.loadDog()
-
-
-    }
 
     private fun setupObservers() {
         val observer = Observer<MainModelView.UiState> {
@@ -68,41 +57,15 @@ class MainActivity : AppCompatActivity() {
 
     //se introduce el texto en la vista.
     private fun bindData(dog: Dog) {
-        setBurguerInput(dog.name)
-        setMinutesInput(dog.description)
-        setPercentBottomInput(dog.sex)
-        setPercentTopInput(dog.date)
-
+    binding.apply {
+        name.text=dog.name;
+        shortDescription.text=dog.description
+        sex.text=dog.sex
+        dateBirth.text=dog.date
+        urlImage.loadUrl(dog.urlImage)
     }
 
-
-    private fun setBurguerInput(nombre: String) {
-        findViewById<TextView>(R.id.nombre).setText(nombre)
     }
-
-    private fun setMinutesInput(descripcion: String) {
-        findViewById<TextView>(R.id.descripcion).setText(descripcion)
-    }
-
-    private fun setPercentTopInput(sexo: String) {
-        findViewById<TextView>(R.id.sexo).setText(sexo)
-    }
-
-    private fun setPercentBottomInput(fecha: String) {
-        findViewById<TextView>(R.id.fecha).setText(fecha)
-    }
-
-    //se recogen todos los inputs
-    private fun getBurguerInput():String=
-
-        findViewById<TextView>(R.id.nombre).text.toString()
-    private fun getMinutesInput():String=
-        findViewById<TextView>(R.id.descripcion).text.toString()
-    private fun getPercentBottomInput():String=
-        findViewById<TextView>(R.id.sexo).text.toString()
-    private fun getPercentTopInput():String=
-        findViewById<TextView>(R.id.nombre).text.toString()
-
 }
 
 
